@@ -1,14 +1,12 @@
-import Nav from '@/components/Nav.vue';
 <template>
-  <div>
-    lables
-    <Nav />
-  </div>
+  <Layout>lables </Layout>
 </template>
 
 <script>
+import Layout from "@/components/Layout.vue";
 
 export default {
+  components: { Layout },
 
   name: "Labels",
 };

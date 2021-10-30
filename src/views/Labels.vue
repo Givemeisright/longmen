@@ -2,12 +2,9 @@
   <Layout>lables </Layout>
 </template>
 
-<script>
-import Layout from "@/components/Layout.vue";
+<script lang='ts'>
 
 export default {
-  components: { Layout },
-
   name: "Labels",
 };
 </script>

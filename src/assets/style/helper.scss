@@ -61,3 +61,23 @@ FangSong_GB2312,
 "CWTEX\-F",
 serif;
 $color-highlight:rgb(255, 38, 0);
+
+%clearFix{
+    &::after{
+    content: '';
+    clear: both;
+    display: block;
+  }
+}
+
+$colorShadow: rgba(0 , 0 , 0, 0.25);
+
+%outerShadow{
+    box-shadow: 0 0 3px $colorShadow;
+}
+
+%innerShadow{
+    box-shadow: inset 0 -3px 3px -3px $colorShadow,
+                inset 0  3px 3px -3px $colorShadow;
+
+}

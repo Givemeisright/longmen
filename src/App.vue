@@ -6,22 +6,15 @@
 
 <style lang="scss">
 @import "~@/assets/style/helper.scss";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "~@/assets/style/reset.scss";
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  font-size: 16px;
   line-height: 1.5;
   font-family: $font-hei;
   color: #333;
 }
-a {
-  text-decoration: none;
-  color: inherit;
-}
+
 
 </style>

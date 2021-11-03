@@ -1,6 +1,3 @@
-import Icon from '@/components/Icon.vue';
-
-
 <template>
     <svg class="icon">
       <use :xlink:href="'#'+name" />

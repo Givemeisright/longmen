@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
 import Money from '@/views/Money.vue'
 import Labels from '@/views/Labels.vue'
 import Statistics from '@/views/Statistics.vue'
@@ -46,6 +45,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode:'history',
   routes
 })
 

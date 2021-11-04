@@ -2,15 +2,29 @@
   <div>
     <label class="notes">
       <span class="name">备注</span>
-      <input type="text" placeholder="在此输入备注" />
+      <input
+        type="text"
+        :value="value"
+        @input="onInput"
+        placeholder="在此输入备注"
+      />
     </label>
   </div>
 </template>
 
 <script lang="ts">
-export default {
-  name: "Notes",
-};
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+import Vue from "vue";
+import Component from "vue-class-component";
+@Component
+export default class Notes extends Vue {
+  value = "";
+  onInput(e:KeyboardEvent){
+    const input= e.target as HTMLInputElement;
+    this.value=input.value;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

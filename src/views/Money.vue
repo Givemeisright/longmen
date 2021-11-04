@@ -24,3 +24,5 @@ export default {
   flex-direction: column-reverse;
 }
 </style>
+
+

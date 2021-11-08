@@ -8,23 +8,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import {Component, Watch} from 'vue-property-decorator';
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
 @Component
-
-export default class Types extends Vue{
-    type = '-' //‘-’表示支出，‘+’表示收入；
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    selectType(type:string) {
-      if (type !== "-" && type != "+") {
-        throw new Error("tpye is unknown");
-      }
-      this.type = type;
+export default class Types extends Vue {
+  @Prop() readonly value !: string;
+  type=this.value;
+  selectType(type: string) {
+    if (type !== "-" && type != "+") {
+      throw new Error("tpye is unknown");
     }
-      //使用事件即使点两次‘支出’也会触发事件，所以使用监听watch，当两次点击相同的时候不会触发事件
-    @Watch('type')
-    onTypeChange(value: string) {
-    this.$emit("update:value", value);
+    this.$emit("update:value", type);
   }
 }
 // export default {

@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 @Component
 
 export default class Types extends Vue{
@@ -21,7 +21,11 @@ export default class Types extends Vue{
       }
       this.type = type;
     }
-
+      //使用事件即使点两次‘支出’也会触发事件，所以使用监听watch，当两次点击相同的时候不会触发事件
+    @Watch('type')
+    onTypeChange(value: string) {
+    this.$emit("update:value", value);
+  }
 }
 // export default {
 //   name: "Types",
@@ -75,5 +79,3 @@ export default class Types extends Vue{
   }
 }
 </style>
-
-

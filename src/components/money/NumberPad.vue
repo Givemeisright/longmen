@@ -49,9 +49,11 @@ export default class NumberPad extends Vue {
       return;
     }
     this.output += input;
+    // this.$emit('update:value',this.output); 可选，每次输入更新数值
   }
   clearPad() {
     this.output = "0";
+    this.$emit("update:value", this.output);
   }
   backSpace() {
     const n = this.output.slice(0, -1);
@@ -62,7 +64,8 @@ export default class NumberPad extends Vue {
     }
   }
   enter() {
-    return;
+    //最后更新数值
+    this.$emit("update:value", this.output);
   }
 }
 </script>

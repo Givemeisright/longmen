@@ -12,34 +12,16 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class Types extends Vue {
-  @Prop() readonly value !: string;
-  type=this.value;
+  @Prop() readonly type !: string;
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   selectType(type: string) {
     if (type !== "-" && type != "+") {
       throw new Error("tpye is unknown");
     }
-    this.$emit("update:value", type);
+    this.$emit("update:type", type);
+  
   }
 }
-// export default {
-//   name: "Types",
-//   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-//   data() {
-//     return {
-//       type: "-",
-//     };
-//   },
-//   props: [""],
-//   methods: {
-//     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-//     selectType(type) {
-//       if (type !== "-" && type != "+") {
-//         throw new Error("tpye is unknown");
-//       }
-//       this.type = type;
-//     },
-//   },
-// };
 </script>
 
 <style lang="scss" scoped>

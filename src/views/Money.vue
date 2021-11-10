@@ -8,6 +8,8 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Vue from "vue";
 import NumberPad from "@/components/money/NumberPad.vue";
@@ -15,39 +17,34 @@ import Types from "@/components/money/Types.vue";
 import Notes from "@/components/money/Notes.vue";
 import Tags from "@/components/money/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
-//ts的类型声明，用于记录四个组件中的值
-type Record = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createdTime?: Date;
-};
+import model from "@/model";
+
 @Component({
   components: { NumberPad, Types, Notes, Tags },
 })
 export default class Money extends Vue {
-  record: Record = { tags: [], notes: "", type: "-", amount: 0 };
+  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   tags = ["衣", "食", "住", "行"];
-  recordList: Record[] = JSON.parse(
-    window.localStorage.getItem("recordList") || "[]"
-  );
+  recordList: RecordItem[] = model.fetch();
+
   onUpdateNotes(value: string) {
     this.record.notes = value;
   }
+
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
   }
 
   saveRecord() {
     //深拷贝一个对象来存储数据，然后再push
-    const updateRecordList: Record = JSON.parse(JSON.stringify(this.record));
+    const updateRecordList: RecordItem = model.deepClone(this.record);
     updateRecordList.createdTime = new Date();
     this.recordList.push(updateRecordList);
   }
+
   @Watch("recordList")
   onRecordListChange() {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>

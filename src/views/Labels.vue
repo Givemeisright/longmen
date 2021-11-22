@@ -2,12 +2,12 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 
 <template>
   <Layout>
-    <ol class="tags">
-      <li v-for="tag in tags" :key="tag.id">
+    <div class="tags">
+      <router-link class="tag" v-for="tag in tags" :key="tag.id" :to="`/label/edit/${tag.id}`">
         <span>{{ tag.name }}</span>
         <Icon name="right" />
-      </li>
-    </ol>
+      </router-link>
+    </div>
     <div class="newTag-wrapper">
       <button class="newTag" @click="creatTag">新建标签</button>
     </div>
@@ -44,7 +44,7 @@ export default class Labels extends Vue {
   flex-direction: column;
   font-size: 16px;
   padding: 0 10px;
-  > li {
+  > .tag {
     min-height: 44px;
     display: flex;
     align-items: center;
@@ -55,10 +55,6 @@ export default class Labels extends Vue {
       width: 18px;
       height: 18px;
       color: #e66;
-    }
-    > span {
-    }
-    > div {
     }
   }
 }

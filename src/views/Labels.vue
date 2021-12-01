@@ -3,13 +3,18 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 <template>
   <Layout>
     <div class="tags">
-      <router-link class="tag" v-for="tag in tags" :key="tag.id" :to="`/label/edit/${tag.id}`">
+      <router-link
+        class="tag"
+        v-for="tag in tags"
+        :key="tag.id"
+        :to="`/labels/edit/${tag.id}`"
+      >
         <span>{{ tag.name }}</span>
         <Icon name="right" />
       </router-link>
     </div>
     <div class="newTag-wrapper">
-      <button class="newTag" @click="creatTag">新建标签</button>
+      <Button  @click="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -18,19 +23,22 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import tagListModel from "@/models/tagListModel";
+import Button from "@/components/money/Button.vue";
 tagListModel.fetch();
 const tags = tagListModel.data;
-@Component
+@Component({
+  components: { Button },
+})
 export default class Labels extends Vue {
   tags = tags;
-  creatTag() {
+  createTag() {
     const name = window.prompt("请输入标签名");
     if (name) {
       const message = tagListModel.create(name);
       if (message === "重复") {
         window.alert("标签重复");
       } else if (message === "成功") {
-        window.alert("添加成功");   
+        window.alert("添加成功");
       }
     }
   }

@@ -8,7 +8,7 @@
         placeholder="请输入备注"
         @update:value="onUpdateNotes"
       />
-    </div>
+    </div>{{record}}
     <Tags :dataSource.sync="tags" :value.sync="record.tags" />
   </Layout>
 </template>

@@ -2,7 +2,12 @@
   <div>
     <label class="notes">
       <span class="name">{{ this.fieldName }}</span>
-      <input type="text" v-model="value" :placeholder="this.placeholder" />
+      <input
+        type="text"
+        :value="value"
+        @input="onValueChange($event.target.value)"
+        :placeholder="this.placeholder"
+      />
     </label>
   </div>
 </template>
@@ -15,7 +20,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 //已经有value可以监听value的值来触发事件
 @Component
 export default class Notes extends Vue {
-  value = "";
+  @Prop({ default: "" }) readonly value!: string;
   // ! 不需要初始值,required: true 设置必填
   @Prop({ required: true }) fieldName!: string;
   @Prop() placeholder?: string;

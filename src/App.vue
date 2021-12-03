@@ -8,7 +8,7 @@
 @import "~@/assets/style/helper.scss";
 @import "~@/assets/style/reset.scss";
 body {
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -17,6 +17,4 @@ body {
   color: #333;
   background: #eee;
 }
-
-
 </style>

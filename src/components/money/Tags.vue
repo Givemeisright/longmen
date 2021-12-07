@@ -1,14 +1,14 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="creat">新增标签</button>
+      <button @click="create">新增标签</button>
     </div>
     <ul class="current">
       <li
         v-for="tag in dataSource"
         :key="tag.id"
         :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
-        @click="toggle(tag.name)"
+        @click="toggle(tag)"
       >
         {{ tag.name }}
       </li>
@@ -20,10 +20,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
+
+// import store  from "@/store/index2.ts";
 @Component
 export default class Tags extends Vue {
-  @Prop()
-  dataSource: string[] | undefined;
+  // tagList = store.fetchTags();
+  @Prop() readonly dataSource: string[] | undefined;
   selectedTags: string[] = [];
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
@@ -32,15 +34,13 @@ export default class Tags extends Vue {
     } else {
       this.selectedTags.push(tag);
     }
-    this.$emit('update:value',this.selectedTags)
+    this.$emit("update:value", this.selectedTags);
   }
-  creat(){
-    const name = window.prompt('请输入标签名')
-    if(name===''){
-      window.alert('标签名不能为空');
-    }else if(this.dataSource){
-        this.$emit('update:dataSource',[...this.dataSource,name]);
-      }   
+  create() {
+    const name = window.prompt("请输入标签名");
+    if (!name) {
+      return window.alert("标签名不能为空");
+    }
   }
 }
 </script>

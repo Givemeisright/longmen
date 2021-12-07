@@ -6,7 +6,7 @@
         type="text"
         :value="value"
         @input="onValueChange($event.target.value)"
-        :placeholder="this.placeholder"
+        :placeholder="placeholder"
       />
     </label>
   </div>
@@ -24,7 +24,6 @@ export default class Notes extends Vue {
   // ! 不需要初始值,required: true 设置必填
   @Prop({ required: true }) fieldName!: string;
   @Prop() placeholder?: string;
-  @Watch("value")
   onValueChange(value: string) {
     this.$emit("update:value", value);
   }

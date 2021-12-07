@@ -36,7 +36,6 @@ import Button from "@/components/money/Button.vue";
   },
 })
 export default class EditLabel extends Vue {
-  inject:['reload']|undefined;
   tag?: { id: string; name: string } = undefined;
   created() {
     const id = this.$route.params.id;
@@ -56,9 +55,12 @@ export default class EditLabel extends Vue {
   }
   remove() {
     if (this.tag) {
-      tagListModel.remove(this.tag.id);
+      if (tagListModel.remove(this.tag.id)) {
+        this.$router.back();
+      } else {
+        window.alert("删除失败");
+      }
     }
-    this.$router.back();
   }
   goBack() {
     this.$router.go(-1);

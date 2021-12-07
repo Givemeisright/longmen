@@ -1,16 +1,6 @@
+import creatId from "@/lib/idCreator";
 const localStorageKeyName = "tagList";
-type Tag = {
-  id: string;
-  name: string;
-};
-type TagListModel = {
-  data: Tag[];
-  fetch: () => Tag[];
-  create: (name: string) => "成功" | "重复";
-  update: (id: string, name: string) => "成功" | "没有找到" | "重复";
-  remove: (id: string) => boolean;
-  save: () => void;
-};
+
 const tagListModel: TagListModel = {
   data: [],
   fetch() {
@@ -24,7 +14,8 @@ const tagListModel: TagListModel = {
     if (names.indexOf(name) >= 0) {
       return "重复";
     }
-    this.data.push({ id: name, name: name });
+    const id = creatId().toString();
+    this.data.push({ id, name: name });
     this.save();
     return "成功";
   },

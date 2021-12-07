@@ -8,8 +8,8 @@
         placeholder="请输入备注"
         @update:value="onUpdateNotes"
       />
-    </div>{{record}}
-    <Tags :dataSource.sync="tags" :value.sync="record.tags" />
+    </div>
+    <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
   </Layout>
 </template>
 
@@ -25,36 +25,33 @@ import Tags from "@/components/money/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
 import recordListModel from "@/models/recordListModel";
 import tagListModel from "@/models/tagListModel";
-import Notes from '../components/money/FormItem.vue';
 
-const tagList = tagListModel.fetch();
 const recordList = recordListModel.fetch();
 @Component({
   components: { NumberPad, Types, FormItem, Tags },
 })
 export default class Money extends Vue {
-  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
-  tags = tagList;
+  tags = window.tagList;
   recordList: RecordItem[] = recordList;
+  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
 
   onUpdateNotes(value: string) {
     this.record.notes = value;
   }
-
+  onUpdateTags(value: string[]) {
+    this.record.tags = value;
+  }
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
   }
 
   saveRecord() {
-    //深拷贝一个对象来存储数据，然后再push
-    const updateRecordList: RecordItem = recordListModel.deepClone(this.record);
-    updateRecordList.createdTime = new Date();
-    this.recordList.push(updateRecordList);
+    recordListModel.create(this.record);
   }
 
   @Watch("recordList")
   onRecordListChange() {
-    recordListModel.save(this.recordList);
+    recordListModel.save();
   }
 }
 </script>
@@ -64,7 +61,7 @@ export default class Money extends Vue {
   display: flex;
   flex-direction: column-reverse;
 }
-.notes{
+.notes {
   padding: 6px 0;
 }
 </style>

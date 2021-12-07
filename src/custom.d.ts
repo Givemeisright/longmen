@@ -20,4 +20,9 @@ type TagListModel = {
 };
 interface Window {
   tagList: Tag[];
+  createTag: (name: string) => void;
+  removeTag: (id: string) => boolean;
+  findTag: (id: string) => Tag | undefined;
+  // 相当于updateTag:TagListModel['update'];
+  updateTag: (id: string, name: string) => "成功" | "没有找到" | "重复";
 }

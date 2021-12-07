@@ -14,7 +14,7 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
       </router-link>
     </div>
     <div class="newTag-wrapper">
-      <Button  @click="createTag">新建标签</Button>
+      <Button @click="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -22,24 +22,17 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import tagListModel from "@/models/tagListModel";
 import Button from "@/components/money/Button.vue";
-tagListModel.fetch();
 
 @Component({
   components: { Button },
 })
 export default class Labels extends Vue {
-  tags =  window.tagList;
+  tags = window.tagList;
   createTag() {
     const name = window.prompt("请输入标签名");
     if (name) {
-      const message = tagListModel.create(name);
-      if (message === "重复") {
-        window.alert("标签重复");
-      } else if (message === "成功") {
-        window.alert("添加成功");
-      }
+      window.createTag(name);
     }
   }
 }

@@ -38,8 +38,12 @@ export default class Tags extends Vue {
   }
   create() {
     const name = window.prompt("请输入标签名");
-    if (!name) {
-      return window.alert("标签名不能为空");
+    if (name) {
+      window.createTag(name);
+    } else if (name === "") {
+      window.alert("标签名不能为空");
+    } else if (this.dataSource) {
+      this.$emit("update:dataSource", [...this.dataSource, name]);
     }
   }
 }

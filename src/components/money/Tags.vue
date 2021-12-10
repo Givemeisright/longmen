@@ -18,6 +18,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import store from "@/store/indexStore";
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
@@ -39,7 +40,7 @@ export default class Tags extends Vue {
   create() {
     const name = window.prompt("请输入标签名");
     if (name) {
-      window.createTag(name);
+      store.createTag(name);
     } else if (name === "") {
       window.alert("标签名不能为空");
     } else if (this.dataSource) {

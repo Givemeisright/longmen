@@ -18,12 +18,17 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import store from "@/store/indexStore";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-@Component
+@Component({
+  computed: {
+    tagList() {
+      // return this.$store.fetchTags();
+      return [];
+    },
+  },
+})
 export default class Tags extends Vue {
-  tagList = store.fetchTags();
   selectedTags: string[] = [];
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
@@ -39,7 +44,8 @@ export default class Tags extends Vue {
     if (!name) {
       return window.alert("标签名不能为空");
     }
-    store.createTag(name);
+    // TODO
+    // store.createTag(name);
   }
 }
 </script>

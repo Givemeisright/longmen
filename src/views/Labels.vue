@@ -23,17 +23,24 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Button from "@/components/money/Button.vue";
-import store from "@/store/indexStore";
 
 @Component({
   components: { Button },
+  computed: {
+    tags() {
+      // todo
+      // return this.$store.tagList;
+    },
+  },
 })
 export default class Labels extends Vue {
-  tags = store.tagList;
+  // todo
+  tags = [];
   createTag() {
     const name = window.prompt("请输入标签名");
     if (name) {
-      store.createTag(name);
+      // todo
+      // this.$store.createTag(name);
     }
   }
 }

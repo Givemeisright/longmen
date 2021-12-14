@@ -4,13 +4,18 @@ import Vue from "vue";
 import Vuex from "vuex";
 // use会把store绑到Vue.prototype.$store = store 上,后面为用户传的store
 Vue.use(Vuex);
-
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+};
 const store = new Vuex.Store({
   // 存储数据，类似data
   state: {
-    recordList: [] as RecordItem[],
-    tagList: [] as Tag[],
-  },
+    recordList: [],
+    tagList: [],
+    currentTag: undefined,
+  } as RootState,
   // 操作数据，类似methods
   mutations: {
     fetchRecords(state) {
@@ -34,9 +39,9 @@ const store = new Vuex.Store({
       );
     },
     fetchTags(state) {
-      return (state.tagList = JSON.parse(
+      state.tagList = JSON.parse(
         window.localStorage.getItem("tagList") || "[]"
-      ));
+      );
     },
     findTag(state, id: string) {
       return state.tagList.filter((t) => t.id === id)[0];
@@ -57,6 +62,9 @@ const store = new Vuex.Store({
     saveTags(state) {
       window.localStorage.setItem("tagList", JSON.stringify(state.tagList));
     },
+    setCurrentTag(state,id:string){
+      state.currentTag = state.tagList.filter(t=>t.id==id)[0];
+    }
     // removeTag(state, id: string) {
     //   let index = -1;
     //   for (let i = 0; i < this.tagList.length; i++) {

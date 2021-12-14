@@ -23,25 +23,20 @@ import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Button from "@/components/money/Button.vue";
+import { mixins } from "vue-class-component";
+import { tagHelper } from "@/mixins/tagHelper";
 
 @Component({
   components: { Button },
   computed: {
     tags() {
-      // todo
-      // return this.$store.tagList;
+      return this.$store.state.tagList;
     },
   },
 })
-export default class Labels extends Vue {
-  // todo
-  tags = [];
-  createTag() {
-    const name = window.prompt("请输入标签名");
-    if (name) {
-      // todo
-      // this.$store.createTag(name);
-    }
+export default class Labels extends mixins(tagHelper) {
+  beforeCreate() {
+    this.$store.commit("fetchTags");
   }
 }
 </script>

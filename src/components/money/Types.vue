@@ -1,8 +1,25 @@
 <template>
   <div>
     <ul class="types">
-      <li :class="type === '-' && 'selected'" @click="selectType('-')">支出</li>
-      <li :class="type === '+' && 'selected'" @click="selectType('+')">收入</li>
+      <!-- [classPrefix + '-item']: classPrefix 其页面使用该组件传入的classPrefix代替，组成新class -->
+      <li
+        :class="{
+          selected: type === '-',
+          [classPrefix + '-item']: classPrefix,
+        }"
+        @click="selectType('-')"
+      >
+        支出
+      </li>
+      <li
+        :class="{
+          selected: type === '+',
+          [classPrefix + '-item']: classPrefix,
+        }"
+        @click="selectType('+')"
+      >
+        收入
+      </li>
     </ul>
   </div>
 </template>
@@ -12,14 +29,14 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class Types extends Vue {
-  @Prop() readonly type !: string;
+  @Prop(String) readonly type!: string;
+  @Prop(String) classPrefix?: string;
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   selectType(type: string) {
     if (type !== "-" && type != "+") {
-      throw new Error("tpye is unknown");
+      throw new Error("type is unknown");
     }
     this.$emit("update:type", type);
-  
   }
 }
 </script>

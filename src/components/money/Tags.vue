@@ -18,11 +18,13 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import Vue from "vue";
 import tagHelper from "@/mixins/tagHelper";
 import { mixins } from "vue-class-component";
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class Tags extends mixins(tagHelper) {
+  @Prop() readonly tag!:Tag[];
   selectedTags: string[] = [];
   get tagList() {
     return this.$store.state.tagList;
@@ -36,7 +38,7 @@ export default class Tags extends mixins(tagHelper) {
       this.selectedTags.splice(index, 1);
     } else {
       this.selectedTags.push(tag);
-    }
+    }      
     this.$emit("update:value", this.selectedTags);
   }
 }

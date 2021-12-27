@@ -1,10 +1,10 @@
 //ts的类型声明，用于记录四个组件中的值
 type RecordItem = {
-  tags: string[];
+  tags: Tag[];
   notes: string;
   type: string;
   amount: number;
-  createdTime?: Date;
+  createdTime?: string;
 };
 type Tag = {
   id: string;
@@ -18,6 +18,12 @@ type TagListModel = {
   remove: (id: string) => boolean;
   save: () => void;
 };
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Window {
   // 以下可以删除

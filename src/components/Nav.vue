@@ -1,4 +1,4 @@
-  <!--<svg>
+<!--<svg>
         <use xlink:href="#money"/>
       </svg> -->
 <template>
@@ -12,17 +12,17 @@
       标签
     </router-link>
     <router-link to="/Statistics" class="item" active-class="selected">
-      <Icon name="statis" />
+      <Icon name="statics" />
       统计
     </router-link>
   </nav>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import Icon from "./Icon.vue";
 // import "@/assets/icons/labels.svg";
 // import "@/assets/icons/money.svg";
-// import "@/assets/icons/statis.svg";
+// import "@/assets/icons/statics.svg";
 
 export default {
   components: { Icon },

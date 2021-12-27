@@ -5,11 +5,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 // use会把store绑到Vue.prototype.$store = store 上,后面为用户传的store
 Vue.use(Vuex);
-type RootState = {
-  recordList: RecordItem[];
-  tagList: Tag[];
-  currentTag?: Tag;
-};
+
 const store = new Vuex.Store({
   // 存储数据，类似data
   state: {
@@ -27,7 +23,7 @@ const store = new Vuex.Store({
     createRecord(state, record) {
       //深拷贝一个对象来存储数据，然后再push
       const updateRecordList: RecordItem = deepClone(record);
-      updateRecordList.createdTime = new Date();
+      updateRecordList.createdTime = new Date().toISOString();
       // 或者使用最新的 this.recordList?.push(updateRecordList);
       state.recordList.push(updateRecordList);
       store.commit("saveRecords");

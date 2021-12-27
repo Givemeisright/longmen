@@ -23,16 +23,14 @@ import FormItem from "@/components/money/FormItem.vue";
 import Tags from "@/components/money/Tags.vue";
 import { Component } from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue";
+import recordTypeList from "@/constants/recordTypeList";
 
 @Component({
   components: { NumberPad, Tabs, FormItem, Tags },
 })
 export default class Money extends Vue {
   type = "-";
-  typeList = [
-    { text: "支出", value: "-" },
-    { text: "收入", value: "+" },
-  ];
+  typeList = recordTypeList;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   get recordList() {
     return this.$store.state.recordList;
@@ -43,22 +41,18 @@ export default class Money extends Vue {
   onUpdateNotes(value: string) {
     this.record.notes = value;
   }
-  onUpdateAmount(value: string) {
-    this.record.amount = parseFloat(value);
-  }
-
   saveRecord() {
     this.$store.commit("createRecord", this.record);
   }
 }
 </script>
 
-<style lang="scss">
-.money-content {
+<style lang="scss" scoped>
+::v-deep .money-content {
   display: flex;
   flex-direction: column-reverse;
 }
 .notes {
-  padding: 6px 0;
+  padding: 12px 0;
 }
 </style>

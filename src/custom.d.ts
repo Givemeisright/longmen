@@ -19,6 +19,7 @@ type TagListModel = {
   save: () => void;
 };
 type RootState = {
+  isCreateRecordSuccess: Error | null;
   recordList: RecordItem[];
   tagList: Tag[];
   currentTag?: Tag;

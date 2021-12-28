@@ -54,7 +54,7 @@ export default class NumberPad extends Vue {
   }
   clearPad() {
     this.output = "0";
-    this.$emit("update:value", this.output);
+    this.$emit("update:value", parseInt(this.output));
   }
   backSpace() {
     const n = this.output.slice(0, -1);

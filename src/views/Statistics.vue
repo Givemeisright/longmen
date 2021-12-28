@@ -4,7 +4,7 @@
       class-prefix="type"
        :data-source="recordTypeList" :value.sync="type"
     />
-    <ol>
+    <ol v-if="groupedList.length>0">
       <li v-for="group in groupedList" :key="group.title">
         <h3 class="title">{{ beautify(group.title) }} <span>￥{{group.total}}</span></h3>
         <ol>
@@ -16,6 +16,9 @@
         </ol>
       </li>
     </ol>
+    <div v-else class="nullAccount">
+      <h3>暂无账目入账</h3>
+    </div>
   </Layout>
 </template>
 <script lang="ts">
@@ -32,7 +35,7 @@ import deepClone from "@/lib/clone";
 })
 export default class Statistics extends Vue {
   tagString(tags: Tag[]) {
-    return tags.length === 0 ? "无" : tags.join(",");
+    return tags.length === 0 ? "无" : tags.map(tag=>tag.name).join(" ，");
   }
   beautify(string: string) {
     const day = dayjs(string);
@@ -88,6 +91,10 @@ export default class Statistics extends Vue {
 </script>
 
 <style scoped lang="scss">
+.nullAccount{
+  padding: 28px;
+  text-align: center;
+}
 ::v-deep {
   .type-tabs-item {
     background: #c4c4c4;

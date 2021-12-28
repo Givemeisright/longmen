@@ -9,6 +9,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   // 存储数据，类似data
   state: {
+    isCreateRecordSuccess: null,
     recordList: [],
     tagList: [],
     currentTag: undefined,
@@ -20,7 +21,7 @@ const store = new Vuex.Store({
         window.localStorage.getItem("recordList") || "[]"
       ) as RecordItem[];
     },
-    createRecord(state, record) {
+    createRecord(state, record: RecordItem) {
       //深拷贝一个对象来存储数据，然后再push
       const updateRecordList: RecordItem = deepClone(record);
       updateRecordList.createdTime = new Date().toISOString();
@@ -39,7 +40,26 @@ const store = new Vuex.Store({
       state.tagList = JSON.parse(
         window.localStorage.getItem("tagList") || "[]"
       );
+      if (!state.tagList || state.tagList.length == 0 ) {
+        
+        store.commit("initTag", "服装");
+        store.commit("initTag", "餐饮");
+        store.commit("initTag", "电费");
+        store.commit("initTag", "电话费");
+        store.commit("initTag", "车费");
+        store.commit("initTag", "燃气费");
+        store.commit("initTag", "宠物");
+      }
     },
+
+    initTag(state, name: string) {
+      const id = creatId().toString();
+      if (parseInt(id) <= 7) {
+        state.tagList.push({ id, name: name });
+        store.commit("saveTags");        
+      }
+    },
+
     findTag(state, id: string) {
       return state.tagList.filter((t) => t.id === id)[0];
     },
@@ -53,8 +73,7 @@ const store = new Vuex.Store({
       const id = creatId().toString();
       state.tagList.push({ id, name: name });
       store.commit("saveTags");
-      window.alert("添加成功");
-      return "成功";
+      return window.alert("添加成功");
     },
     saveTags(state) {
       window.localStorage.setItem("tagList", JSON.stringify(state.tagList));

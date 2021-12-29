@@ -2,12 +2,22 @@
   <div>
     <label class="notes">
       <span class="name">{{ this.fieldName }}</span>
-      <input
-        type="text"
-        :value="value"
-        @input="onValueChange($event.target.value)"
-        :placeholder="placeholder"
-      />
+      <template v-if="type == 'date'">
+        <input
+          :type="type || 'text'"
+          :value="getTime(value)"
+          @input="onValueChange($event.target.value)"
+          :placeholder="placeholder"
+        />
+      </template>
+      <template v-else>
+        <input
+          :type="type || 'text'"
+          :value="value"
+          @input="onValueChange($event.target.value)"
+          :placeholder="placeholder"
+        />
+      </template>
     </label>
   </div>
 </template>
@@ -15,6 +25,7 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
+import dayjs from "dayjs";
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 //已经有value可以监听value的值来触发事件
@@ -24,8 +35,12 @@ export default class Notes extends Vue {
   // ! 不需要初始值,required: true 设置必填
   @Prop({ required: true }) fieldName!: string;
   @Prop() placeholder?: string;
+  @Prop() type?: string;
   onValueChange(value: string) {
     this.$emit("update:value", value);
+  }
+  getTime(isoString: string) {
+    return dayjs(isoString).format("YYYY-MM-DD");
   }
 }
 </script>

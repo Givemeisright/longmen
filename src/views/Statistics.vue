@@ -53,10 +53,12 @@ export default class Statistics extends Vue {
       return day.format("YYYY年M月D日");
     }
   }
+
   get recordList() {
     // eslint-disable-next-line no-undef
     return (this.$store.state as RootState).recordList;
   }
+
   get groupedList() {
     const {recordList} = this;
     if (recordList.length === 0) {return [];}
@@ -64,7 +66,6 @@ export default class Statistics extends Vue {
       .filter(r => r.type === this.type)
       .sort((a, b) => dayjs(b.createdTime).valueOf() - dayjs(a.createdTime).valueOf());
       if(newList.length===0){return[]as Result}
-    type Result = { title: string, total?: number, items: RecordItem[] }[]
     const result: Result = [{title: dayjs(newList[0].createdTime).format('YYYY-MM-DD'), items: [newList[0]]}];
     for (let i = 1; i < newList.length; i++) {
       const current = newList[i];
@@ -82,9 +83,11 @@ export default class Statistics extends Vue {
     });
     return result;
   }
+
   beforeCreate() {
     this.$store.commit("fetchRecords");
   }
+  
   type = "-";
   recordTypeList = recordTypeList;
 }

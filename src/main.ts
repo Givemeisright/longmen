@@ -21,21 +21,19 @@ new Vue({
 
 window.onload = function() {
   setTimeout(function() {
-    console.log('wdf');
-    
     window.scrollTo(0, window.document.documentElement.clientHeight);
   }, 0);
 };
 
-if(window.document.documentElement.clientWidth>500){
-  alert('请使用手机扫码登陆')
-  const img =document.createElement('img')
-  img.src = './QRcode.png'
-  img.style.position = 'fixed'
-  img.style.left='50%'
-  img.style.top='50%'
-  img.style.transform='translate(-50%,-50%)'
-  img.style.boxShadow='0 0 10px rgba(0,0,0,0.5)'
-  document.body.appendChild(img)
-}
+// if(window.document.documentElement.clientWidth>500){
+//   alert('请使用手机扫码使用')
+//   const img =document.createElement('img')
+//   img.src = './QRcode.png'
+//   img.style.position = 'fixed'
+//   img.style.left='50%'
+//   img.style.top='50%'
+//   img.style.transform='translate(-50%,-50%)'
+//   img.style.boxShadow='0 0 10px rgba(0,0,0,0.5)'
+//   document.body.appendChild(img)
+// }
 

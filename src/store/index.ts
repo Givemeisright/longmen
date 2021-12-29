@@ -24,7 +24,8 @@ const store = new Vuex.Store({
     createRecord(state, record: RecordItem) {
       //深拷贝一个对象来存储数据，然后再push
       const updateRecordList: RecordItem = deepClone(record);
-      updateRecordList.createdTime = new Date().toISOString();
+      updateRecordList.createdTime =
+        updateRecordList.createdTime || new Date().toISOString();
       // 或者使用最新的 this.recordList?.push(updateRecordList);
       state.recordList.push(updateRecordList);
       store.commit("saveRecords");
@@ -40,8 +41,7 @@ const store = new Vuex.Store({
       state.tagList = JSON.parse(
         window.localStorage.getItem("tagList") || "[]"
       );
-      if (!state.tagList || state.tagList.length == 0 ) {
-        
+      if (!state.tagList || state.tagList.length == 0) {
         store.commit("initTag", "服装");
         store.commit("initTag", "餐饮");
         store.commit("initTag", "电费");
@@ -56,7 +56,7 @@ const store = new Vuex.Store({
       const id = creatId().toString();
       if (parseInt(id) <= 7) {
         state.tagList.push({ id, name: name });
-        store.commit("saveTags");        
+        store.commit("saveTags");
       }
     },
 

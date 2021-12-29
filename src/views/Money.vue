@@ -4,12 +4,18 @@
     <Tabs :data-source="typeList" :value.sync="record.type" />
     <div class="notes">
       <FormItem
+        type="date"
+        fieldName="日期"
+        placeholder="请输入备注"
+        :value.sync="record.createdTime"
+      />
+      <FormItem
         fieldName="备注"
         placeholder="请输入备注"
         :value.sync="record.notes"
       />
     </div>
-    <Tags @update:value="record.tags = $event"/>
+    <Tags @update:value="record.tags = $event" />
   </Layout>
 </template>
 
@@ -24,6 +30,7 @@ import Tags from "@/components/money/Tags.vue";
 import { Component } from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue";
 import recordTypeList from "@/constants/recordTypeList";
+import dayjs from "dayjs";
 
 @Component({
   components: { NumberPad, Tabs, FormItem, Tags },
@@ -31,7 +38,13 @@ import recordTypeList from "@/constants/recordTypeList";
 export default class Money extends Vue {
   type = "-";
   typeList = recordTypeList;
-  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
+  record: RecordItem = {
+    tags: [],
+    notes: "",
+    type: "-",
+    amount: 0,
+    createdTime: dayjs().toISOString(),
+  };
   get recordList() {
     return this.$store.state.recordList;
   }
@@ -42,13 +55,13 @@ export default class Money extends Vue {
     this.record.notes = value;
   }
   saveRecord() {
-    if(!this.record.tags||this.record.tags.length==0){
-      return window.alert('至少选择一个标签')
+    if (!this.record.tags || this.record.tags.length == 0) {
+      return window.alert("至少选择一个标签");
     }
     this.$store.commit("createRecord", this.record);
     if (this.$store.state.isCreateRecordSuccess == null) {
       window.alert("已入账");
-      this.record.notes=''
+      this.record.notes = "";
     }
   }
 }

@@ -18,6 +18,9 @@ type TagListModel = {
   remove: (id: string) => boolean;
   save: () => void;
 };
+
+type Result = { title: string; total?: number; items: RecordItem[] }[];
+
 type RootState = {
   isCreateRecordSuccess: Error | null;
   recordList: RecordItem[];

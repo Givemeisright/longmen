@@ -1,7 +1,7 @@
-import Icon from '@/components/Icon.vue'; import Vue from 'vue';
 
 <template>
   <Layout>
+    <Title title="标签"/>
     <div class="tags">
       <router-link
         class="tag"
@@ -59,18 +59,18 @@ export default class Labels extends mixins(tagHelper) {
     }
   }
 }
-.newTag {
-  margin: 10px;
-  background: #767676;
-  color: white;
-  border-radius: 4px;
-  border: none;
-  height: 40px;
-  padding: 0 16px;
-  &-wrapper {
+.newTag-wrapper {
+  // margin: 10px;
+  // background: #767676;
+  // color: white;
+  // border-radius: 4px;
+  // border: 1px solid red;
+  // height: 40px;
+  // padding: 0 16px;
+  // &-wrapper {
     text-align: center;
     padding: 16px;
     margin-top: 8px;
-  }
+  // }
 }
 </style>

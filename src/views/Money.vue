@@ -16,6 +16,7 @@
       />
     </div>
     <Tags @update:value="record.tags = $event" />
+    <Title title="记账"/>
   </Layout>
 </template>
 
@@ -31,9 +32,10 @@ import { Component } from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue";
 import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
+import Title from "@/components/Title.vue";
 
 @Component({
-  components: { NumberPad, Tabs, FormItem, Tags },
+  components: { NumberPad, Tabs, FormItem, Tags, Title},
 })
 export default class Money extends Vue {
   type = "-";
@@ -45,6 +47,7 @@ export default class Money extends Vue {
     amount: 0,
     createdTime: dayjs().toISOString(),
   };
+
   get recordList() {
     return this.$store.state.recordList;
   }
@@ -57,6 +60,9 @@ export default class Money extends Vue {
   saveRecord() {
     if (!this.record.tags || this.record.tags.length == 0) {
       return window.alert("至少选择一个标签");
+    }
+    if (!this.record.amount || this.record.amount == 0) {
+      return window.alert("输入数值需要大于0");
     }
     this.$store.commit("createRecord", this.record);
     if (this.$store.state.isCreateRecordSuccess == null) {

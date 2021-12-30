@@ -70,10 +70,8 @@ export default class Tags extends mixins(tagHelper) {
         background: darken($bg, 15%);
         color: white;
       }
-      @media (min-width: 400px) {
+      @media (min-width: 500px) {
         &:hover {
-          background: darken($bg, 15%);
-          color: white;
           cursor: pointer;
         }
       }

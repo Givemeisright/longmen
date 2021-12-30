@@ -6,12 +6,13 @@ import store from "./store";
 import Nav from "@/components/Nav.vue";
 import Layout from "@/components/Layout.vue";
 import Icon from "@/components/Icon.vue";
-
+import Title from "@/components/Title.vue";
 Vue.config.productionTip = false;
 
 Vue.component("Nav", Nav);
 Vue.component("Layout", Layout);
 Vue.component("Icon", Icon);
+Vue.component("Title",Title);
 
 new Vue({
   router,
@@ -24,6 +25,7 @@ window.onload = function() {
     window.scrollTo(0, window.document.documentElement.clientHeight);
   }, 0);
 };
+
 
 // if(window.document.documentElement.clientWidth>500){
 //   alert('请使用手机扫码使用')

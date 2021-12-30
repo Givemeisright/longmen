@@ -1,23 +1,25 @@
 <template>
   <div>
     <label class="notes">
-      <span class="name">{{ this.fieldName }}</span>
-      <template v-if="type == 'date'">
-        <input
-          :type="type || 'text'"
-          :value="getTime(value)"
-          @input="onValueChange($event.target.value)"
-          :placeholder="placeholder"
-        />
-      </template>
-      <template v-else>
-        <input
-          :type="type || 'text'"
-          :value="value"
-          @input="onValueChange($event.target.value)"
-          :placeholder="placeholder"
-        />
-      </template>
+      <div class="name">{{ this.fieldName }}</div>
+      <div>
+        <template v-if="type == 'date'">
+          <input
+            :type="type || 'text'"
+            :value="getTime(value)"
+            @input="onValueChange($event.target.value)"
+            :placeholder="placeholder"
+          />
+        </template>
+        <template v-else>
+          <input
+            :type="type || 'text'"
+            :value="value"
+            @input="onValueChange($event.target.value)"
+            :placeholder="placeholder"
+          />
+        </template>
+      </div>
     </label>
   </div>
 </template>

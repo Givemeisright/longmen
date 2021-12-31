@@ -20,9 +20,9 @@ new Vue({
   render: (h) => h(App),
 }).$mount("#app");
 
-window.onload = function() {
-  setTimeout(function() {
-    window.scrollTo(0, window.document.documentElement.clientHeight);
+window.onload = function () {  
+  setTimeout(function () {
+    window.scrollTo(0, document.body.clientHeight);
   }, 0);
 };
 

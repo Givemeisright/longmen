@@ -24,9 +24,9 @@ export default {
     overflow: auto;
     flex-grow: 1;
   }
-  @media  (max-height:850px) {
- .layout-wrapper{
-  min-height: 93vh;
-  }
-}
+//   @media  (max-height:850px) {
+//  .layout-wrapper{
+//   min-height: 93vh;
+//   }
+// }
 </style>

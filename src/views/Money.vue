@@ -16,7 +16,7 @@
       />
     </div>
     <Tags @update:value="record.tags = $event" />
-    <Title title="记账"/>
+    <Title title="记账" />
   </Layout>
 </template>
 
@@ -35,7 +35,7 @@ import dayjs from "dayjs";
 import Title from "@/components/Title.vue";
 
 @Component({
-  components: { NumberPad, Tabs, FormItem, Tags, Title},
+  components: { NumberPad, Tabs, FormItem, Tags, Title },
 })
 export default class Money extends Vue {
   type = "-";
@@ -53,6 +53,16 @@ export default class Money extends Vue {
   }
   created() {
     this.$store.commit("fetchRecords");
+  }
+  mounted() {
+    window.onload = function() {
+      console.log("ss");
+      console.log(window.document.documentElement.clientHeight);
+
+      setTimeout(function() {
+        window.scrollTo(0, window.document.documentElement.clientHeight);
+      }, 0);
+    };
   }
   onUpdateNotes(value: string) {
     this.record.notes = value;

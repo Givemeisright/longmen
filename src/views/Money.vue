@@ -45,7 +45,7 @@ export default class Money extends Vue {
     notes: "",
     type: "-",
     amount: 0,
-    createdTime: dayjs().toISOString(),
+    createdTime: dayjs().format("YYYY-MM-DD").toString(),
   };
 
   get recordList() {

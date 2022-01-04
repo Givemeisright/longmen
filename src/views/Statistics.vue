@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Title title="统计"/>
+    <Title title="统计" />
     <Tabs
       class-prefix="type"
       :data-source="recordTypeList"
@@ -25,7 +25,10 @@
       <h3>暂无账目入账</h3>
     </div>
     <div class="viewChart">
-      <router-link to="/statistics/chart" >
+      <router-link to="/statistics/chart-out" v-if="type=='-'">
+        <Button>查看图表</Button>
+      </router-link>
+      <router-link to="/statistics/chart-in" v-else-if="type=='+'">
         <Button>查看图表</Button>
       </router-link>
     </div>
@@ -39,6 +42,7 @@ import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
 import deepClone from "@/lib/clone";
 import Button from "@/components/money/Button.vue";
+import _ from "lodash";
 
 // import clone from '@/lib/clone';
 @Component({
@@ -113,7 +117,7 @@ export default class Statistics extends Vue {
   beforeCreate() {
     this.$store.commit("fetchRecords");
   }
-
+  
   type = "-";
   recordTypeList = recordTypeList;
 }

@@ -5,8 +5,8 @@ import Labels from "@/views/Labels.vue";
 import Statistics from "@/views/Statistics.vue";
 import Notfound from "@/views/Notfound.vue";
 import EditLabel from '@/views/EditLabel.vue';
-import EChart from '@/views/EChart.vue';
-
+import EChartOut from '@/views/EChart-out.vue';
+import EChartIn from '@/views/EChart-in.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -31,8 +31,12 @@ const routes = [
     component: EditLabel,
   },
   {
-    path: "/statistics/chart/",
-    component: EChart,
+    path: "/statistics/chart-out/",
+    component: EChartOut,
+  },
+  {
+    path: "/statistics/chart-in/",
+    component: EChartIn,
   },
   {
     path: "*",

@@ -11,7 +11,7 @@
 </template>
 <style scoped lang="scss">
 .backButton {
-  margin-top: 50px;
+  margin-top: 15px;
   text-align: center;
 }
 .chart {
@@ -123,9 +123,13 @@ export default class ECharts extends Vue {
         axisLine: {
           //坐标轴颜色
           lineStyle: {
-            color: "rgba(0, 0, 0, 1)",
+            color: "#BF8665",
+            width: 3,
           },
         },
+        axisLabel: {
+            fontSize: 15,
+          },
         //坐标轴对齐标记点
         axisTick: { alignWithLabel: true },
         data: keys,
@@ -142,12 +146,12 @@ export default class ECharts extends Vue {
           symbolSize: 14,
           // 折线拐点标志的样式
           itemStyle: {
-            color: "rgba(54, 84, 161, 1)",
+            color: "#f3ab82",
           },
           // 线条样式
           lineStyle: {
             width: 3,
-            color: "rgba(181, 56, 56, 1)",
+            color: "#8DF2B8",
           },
         },
       ],

@@ -1,6 +1,6 @@
 <template>
   <div class="numberPad">
-    <div class="output">{{ output }}</div>
+    <div class="output">{{ output }} 元</div>
     <div class="buttons clearfix">
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
@@ -77,84 +77,86 @@ export default class NumberPad extends Vue {
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 .numberPad {
+  margin-top: -3px;
   .output {
     @extend %clearFix;
-    @extend %innerShadow;
+    background: #ffffff;
     font-size: 36px;
-    font-family: Consolas, monospace;
-    padding: 9px 16px;
+    // font-family: Consolas, monospace;
+    padding: 3px 16px 0 16px;
     text-align: right;
+    &::after {
+        content: "";
+        position: relative;
+        bottom: 5px;
+        width: 100%;
+        height: 1px;
+        background: #898989;
+      }
   }
   .buttons {
     @extend %clearFix;
+    font-weight: bold;
+    margin: 3px;
     > button {
-      width: 25%;
+      color: #f3ab82;
+      width: 24%;
       height: 64px;
+      margin: 0.5%;
       float: left;
-      background: transparent;
-      border: none;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #f3ab82;
       &.ok {
-        height: 64 * 2px;
+        color: #fffefd;
+        height: 133px;
         float: right;
       }
       &.zero {
-        width: 50%;
+        width: 49%;
       }
       $bg: #f2f2f2;
       $percent: 4%;
       &:nth-child(1) {
-        background: $bg;
         &:hover {
-          background: darken($color: $bg, $amount: 2 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(2),
       &:nth-child(5) {
-        background: darken($color: $bg, $amount: $percent);
         &:hover {
-          background: darken($color: $bg, $amount: 3 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(3),
       &:nth-child(6),
       &:nth-child(9) {
-        background: darken($color: $bg, $amount: 2 * $percent);
         &:hover {
-          background: darken($color: $bg, $amount: 4 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(4),
       &:nth-child(7),
       &:nth-child(10) {
-        background: darken($color: $bg, $amount: 3 * $percent);
         &:hover {
-          background: darken($color: $bg, $amount: 5 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(8),
       &:nth-child(11),
       &:nth-child(13) {
-        background: darken($color: $bg, $amount: 4 * $percent);
         &:hover {
-          background: darken($color: $bg, $amount: 6 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(14) {
-        background: darken($color: $bg, $amount: 5 * $percent);
         &:hover {
-          background: darken($color: $bg, $amount: 7 * $percent);
           cursor: pointer;
         }
       }
       &:nth-child(12) {
-        background: darken($color: $bg, $amount: 6 * $percent);
+        background: #f3ab82;
         &:hover {
-          background: darken($color: $bg, $amount: 8 * $percent);
           cursor: pointer;
         }
       }

@@ -2,7 +2,7 @@
   <div>
     <label class="notes">
       <div class="name">{{ this.fieldName }}</div>
-      <div>
+      <div class="note">
         <template v-if="type == 'date'">
           <input
             :type="type || 'text'"
@@ -49,20 +49,28 @@ export default class Notes extends Vue {
 
 <style lang="scss" scoped>
 .notes {
-  font-size: 14px;
+  margin: 4px;
+  font-size: 15px;
   display: block;
-  padding-left: 16px;
+  padding-left: 10px;
   display: flex;
   align-items: center;
   .name {
+    font-weight: bold;
+    color: #f3ab82;
     padding-right: 16px;
+  }
+  .note {
+    width:85%;
   }
   input {
     height: 40px;
+    width:100%;
     flex-grow: 1;
     background: transparent;
-    border: none;
-    padding-right: 16px;
+    border: 1px solid #f3ab82;
+    border-radius: 5px;
+    padding: 0 16px;
   }
 }
 </style>

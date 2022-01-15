@@ -38,8 +38,9 @@ nav {
   display: flex;
   flex-direction: row;
   font-size: 12px;
+  background: #ffffff;
   > .item {
-    color: black;
+    color: rgb(194, 189, 189);
     padding: 2px 0;
     width: 33.33333%;
     display: flex;

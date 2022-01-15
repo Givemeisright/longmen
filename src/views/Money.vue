@@ -15,8 +15,9 @@
         :value.sync="record.notes"
       />
     </div>
+
     <Tags @update:value="record.tags = $event" />
-    <Title title="记账" />
+    <Title title="记账本" />
   </Layout>
 </template>
 
@@ -45,7 +46,9 @@ export default class Money extends Vue {
     notes: "",
     type: "-",
     amount: 0,
-    createdTime: dayjs().format("YYYY-MM-DD").toString(),
+    createdTime: dayjs()
+      .format("YYYY-MM-DD")
+      .toString(),
   };
 
   get recordList() {
@@ -87,8 +90,5 @@ export default class Money extends Vue {
 ::v-deep .money-content {
   display: flex;
   flex-direction: column-reverse;
-}
-.notes {
-  padding: 12px 0;
 }
 </style>

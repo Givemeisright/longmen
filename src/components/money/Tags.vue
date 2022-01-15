@@ -24,7 +24,7 @@ import { mixins } from "vue-class-component";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class Tags extends mixins(tagHelper) {
-  @Prop() readonly tag!:Tag[];
+  @Prop() readonly tag!: Tag[];
   selectedTags: string[] = [];
   get tagList() {
     return this.$store.state.tagList;
@@ -38,15 +38,18 @@ export default class Tags extends mixins(tagHelper) {
       this.selectedTags.splice(index, 1);
     } else {
       this.selectedTags.push(tag);
-    }      
+    }
     this.$emit("update:value", this.selectedTags);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$bg: #f3ab82;
+$ubg: #bbb;
+$height: 30px;
 .tags {
-  background: rgba(251, 255, 0, 0.212);
+  background: #fff;
   flex-grow: 1;
   font-size: 14px;
   padding: 16px;
@@ -57,18 +60,17 @@ export default class Tags extends mixins(tagHelper) {
     flex-wrap: wrap;
     overflow: hidden;
     > li {
-      $bg: #d9d9d9;
-      $height: 25px;
-      background: $bg;
+      border: solid 1px $ubg;
+      color: $ubg;
       height: $height;
       line-height: $height;
-      border-radius: $height/2;
+      border-radius: $height;
       padding: 0 15px;
       margin-right: 12px;
       margin-top: 4px;
       &.selected {
-        background: darken($bg, 15%);
-        color: white;
+        color: $bg;
+        border: solid 1px $bg;
       }
       @media (min-width: 500px) {
         &:hover {
@@ -86,7 +88,7 @@ export default class Tags extends mixins(tagHelper) {
       color: #999;
       padding: 0 4px;
       &:hover {
-        color: #888;
+        color: $bg;
         cursor: pointer;
       }
     }

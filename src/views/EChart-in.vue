@@ -11,7 +11,7 @@
 </template>
 <style scoped lang="scss">
 .backButton {
-  margin-top: 50px;
+  margin-top: 15px;
   text-align: center;
 }
 .chart {
@@ -46,7 +46,7 @@ export default class ECharts extends Vue {
   type = "+";
   get recordList() {
     // eslint-disable-next-line no-undef
-    
+
     return (this.$store.state as RootState).recordList;
   }
   mounted() {
@@ -118,18 +118,22 @@ export default class ECharts extends Vue {
         right: 0,
       },
 
-      xAxis: {
+      xAxis:[ {
         type: "category",
         axisLine: {
           //坐标轴颜色
           lineStyle: {
-            color: "rgba(0, 0, 0, 1)",
+            color: "#BF8665",
+            width: 3,
           },
         },
+        axisLabel: {
+            fontSize: 15,
+          },
         //坐标轴对齐标记点
         axisTick: { alignWithLabel: true },
         data: keys,
-      },
+      }],
       yAxis: {
         type: "value",
         show: false,
@@ -139,15 +143,15 @@ export default class ECharts extends Vue {
           data: values,
           type: "line",
           symbol: "circle",
-          symbolSize: 14,
+          symbolSize: 12,
           // 折线拐点标志的样式
           itemStyle: {
-            color: "rgba(54, 84, 161, 1)",
+            color: "#f3ab82",
           },
           // 线条样式
           lineStyle: {
             width: 3,
-            color: "rgba(181, 56, 56, 1)",
+            color: "rgba(255, 0, 0, 0.5)",
           },
         },
       ],

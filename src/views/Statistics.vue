@@ -7,7 +7,7 @@
       :value.sync="type"
     />
 
-    <ol v-if="groupedList.length > 0">
+    <ol class="groupedList" v-if="groupedList.length > 0">
       <li v-for="group in groupedList" :key="group.title">
         <h3 class="title">
           {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
@@ -25,10 +25,10 @@
       <h3>暂无账目入账</h3>
     </div>
     <div class="viewChart">
-      <router-link to="/statistics/chart-out" v-if="type=='-'">
+      <router-link to="/statistics/chart-out" v-if="type == '-'">
         <Button>查看图表</Button>
       </router-link>
-      <router-link to="/statistics/chart-in" v-else-if="type=='+'">
+      <router-link to="/statistics/chart-in" v-else-if="type == '+'">
         <Button>查看图表</Button>
       </router-link>
     </div>
@@ -117,7 +117,7 @@ export default class Statistics extends Vue {
   beforeCreate() {
     this.$store.commit("fetchRecords");
   }
-  
+
   type = "-";
   recordTypeList = recordTypeList;
 }
@@ -130,15 +130,17 @@ export default class Statistics extends Vue {
 }
 .viewChart {
   margin: 0 auto;
+  margin-top: 25px;
   text-align: center;
 }
 ::v-deep {
-  .type-tabs-item {
-    background: #c4c4c4;
-    &.selected {
-      background: white;
-      &::after {
-        display: none;
+  .type-tabs{
+    margin: 5px;
+    &-item {
+      &.selected {
+        &::before {
+          display: none;
+        }
       }
     }
   }
@@ -164,5 +166,9 @@ export default class Statistics extends Vue {
   margin-right: auto;
   margin-left: 16px;
   color: #999;
+}
+.groupedList {
+  max-height: 72vh;
+  overflow: auto;
 }
 </style>

@@ -50,12 +50,12 @@ export default class Labels extends mixins(tagHelper) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid #f3ab8266;
     padding: 0 8px;
     svg {
-      width: 18px;
-      height: 18px;
-      color: #e66;
+      width: 30px;
+      height: 30px;
+      color: #f3ab82;
     }
   }
 }

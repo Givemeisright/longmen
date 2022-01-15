@@ -3,25 +3,25 @@
       </svg> -->
 <template>
   <nav>
-    <div class="item">
+    <!-- <div class="item">
       <Icon name="dragon" />
-    </div>
+    </div> -->
     <div class="title-wrapper">
       <h3>
-        {{title}}
+        {{ title }}
       </h3>
     </div>
-    <div class="item">
-      <Icon/>
-    </div>
+    <!-- <div class="item">
+      <Icon />
+    </div> -->
   </nav>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 import Icon from "./Icon.vue";
 @Component({
-  components:{Icon}
+  components: { Icon },
 })
 export default class Title extends Vue {
   @Prop(String) title?: string;
@@ -32,11 +32,15 @@ export default class Title extends Vue {
 @import "~@/assets/style/helper.scss";
 nav {
   @extend %outerShadow;
+  padding: 8px;
   display: flex;
   flex-direction: row;
   font-size: 12px;
+  background: #f3ab82;
+  color: #fff;
+  font-size: 1em;
   > .item {
-    color: black;
+    background: rgb(253, 0, 76);
     padding: 3px 5px;
     display: flex;
     justify-content: center;
@@ -46,9 +50,6 @@ nav {
       width: 30px;
       height: 30px;
     }
-  }
-  > .item.selected {
-    color: $color-highlight;
   }
 }
 .title-wrapper {

@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Title title="统计" />
+    <Title title="编辑" />
     <div class="form-wrapper">
       <FormItem
         :value="currentTag.name"
@@ -69,11 +69,14 @@ export default class EditLabel extends Vue {
 
 .form-wrapper {
   background: white;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 .button-wrapper {
   text-align: center;
   padding: 16px;
   margin-top: 28px;
+  Button{
+    margin: 10px;
+  }
 }
 </style>

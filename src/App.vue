@@ -14,12 +14,12 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-family: $font-hei;
+  background: #f3f3f3;
   color: #333;
 }
-#app{
+#app {
   max-width: 500px;
-  margin:auto;
-  background: #eee;
+  margin: auto;
+  background: #fff;
 }
-
 </style>
